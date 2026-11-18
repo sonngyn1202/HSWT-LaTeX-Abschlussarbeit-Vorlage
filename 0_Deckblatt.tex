@@ -1,46 +1,74 @@
 % ============================================================
 %  DECKBLATT
-%  Alle mit XXX markierten Felder durch deine Angaben ersetzen.
+%  Alle mit XXX bzw. "Dein ..." markierten Felder anpassen.
+%  Die Farben (hswtgreen, hswtdark) sind in main.tex definiert.
 % ============================================================
 
-% Kopfzeile: Logo links, Hochschultext rechts
-\titlehead{%
-  \noindent
-  \begin{minipage}[c]{0.42\textwidth}
-    \includegraphics[width=\linewidth]{Bilder/HSWT LOGO.png}
-  \end{minipage}\hfill
-  \begin{minipage}[c]{0.53\textwidth}
-    \raggedleft
-    \textbf{Hochschule Weihenstephan-Triesdorf}\\
-    Fakultät XXX  % <-- Fakultät anpassen
-  \end{minipage}
-  \par\vspace{1.5cm}
-}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{singlespacing}
 
-% Art der Arbeit (z.B. Bachelorarbeit oder Masterarbeit)
-\subject{{\huge Abschlussarbeit}}   % <-- anpassen
+    % --------------------------------------------------------
+    %  1. KOPFZEILE: HSWT-Logo links, Hochschulname & Fakultät rechts
+    % --------------------------------------------------------
+    \noindent
+    \begin{minipage}[c]{0.48\textwidth}
+      \includegraphics[width=\linewidth]{Bilder/HSWT LOGO.png}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.48\textwidth}
+      \raggedleft
+      {\fontsize{11}{14}\selectfont\bfseries Hochschule Weihenstephan-Triesdorf}\\[2pt]
+      {\fontsize{10.5}{13}\selectfont\color{black!75} Fakultät XXX} % <-- Fakultät anpassen
+    \end{minipage}
 
-% Titel der Arbeit
-\title{Dein Titel}                  % <-- anpassen
+    \vspace{0.5cm}
+    {\color{hswtgreen}\hrule height 1.5pt}
 
-% Verfasser
-\author{Dein Name}                  % <-- anpassen
+    % --------------------------------------------------------
+    %  2. HAUPTTEIL: Art der Arbeit, Titel, Verfasser
+    % --------------------------------------------------------
+    \vspace*{\stretch{1.0}}
 
-\date{}  % leer lassen – Datum kommt in den unteren Block
+    \begin{center}
+      % Art der Arbeit (z.B. Bachelorarbeit, Masterarbeit, Abschlussarbeit)
+      {\fontsize{12}{14}\selectfont\bfseries\color{hswtdark}\textls[140]{\MakeUppercase{Abschlussarbeit}}} % <-- anpassen
 
-% Unterer Informationsblock
-\publishers{%
-  \vspace{1.5cm}
-  \begin{tabularx}{\textwidth}{@{}lX@{}}
-    Studiengang:     & XXX \\        % <-- anpassen
-    Matrikelnummer:  & XXX \\        % <-- anpassen
-  \end{tabularx}
+      \vspace{0.45cm}
+      {\color{hswtgreen}\rule{2.8cm}{1.2pt}}
+      \vspace{0.9cm}
 
-  \vspace{1.2cm}
+      % Titel der Arbeit (funktioniert auch bei mehrzeiligen Titeln sauber)
+      {\fontsize{25}{32}\selectfont\bfseries Dein Titel\par} % <-- anpassen
 
-  \begin{tabularx}{\textwidth}{@{}lX@{}}
-    Erstprüfer:   & Prof.\ Dr.\ XXX \\    % <-- anpassen
-    Zweitprüfer:  & Prof.\ Dr.\ XXX \\    % <-- anpassen
-    Abgabedatum:  & XX.XX.XXXX \\         % <-- anpassen
-  \end{tabularx}
-}
+      % Optionaler Untertitel (bei Bedarf Prozentzeichen entfernen):
+      % \vspace{0.45cm}
+      % {\fontsize{13}{17}\selectfont\color{black!75} Optionaler Untertitel der Arbeit\par}
+
+      \vspace{1.4cm}
+
+      % Verfasser
+      {\normalsize\color{black!65} vorgelegt von}\\[0.28cm]
+      {\fontsize{15}{19}\selectfont\bfseries Dein Name\par} % <-- anpassen
+    \end{center}
+
+    \vspace*{\stretch{1.4}}
+
+    % --------------------------------------------------------
+    %  3. METADATENBLOCK: Studiengang, Prüfer, Abgabedatum
+    % --------------------------------------------------------
+    {\color{black!25}\hrule height 0.5pt}
+    \vspace{0.65cm}
+
+    \noindent
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\textwidth}{@{}p{3.8cm} X@{}}
+      \textcolor{black!70}{Studiengang:}    & XXX \\                % <-- anpassen
+      \textcolor{black!70}{Matrikelnummer:} & XXX \\[0.45cm]        % <-- anpassen
+      \textcolor{black!70}{Erstprüfer:}     & Prof.\ Dr.\ XXX \\    % <-- anpassen
+      \textcolor{black!70}{Zweitprüfer:}    & Prof.\ Dr.\ XXX \\    % <-- anpassen
+      \textcolor{black!70}{Abgabedatum:}    & XX.XX.XXXX \\         % <-- anpassen
+    \end{tabularx}
+
+    \vspace*{0.2cm}
+  \end{singlespacing}
+\end{titlepage}

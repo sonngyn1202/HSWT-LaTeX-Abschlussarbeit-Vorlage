@@ -12,28 +12,42 @@
 \usepackage{csquotes}           % Typografisch korrekte Anführungszeichen; Pflicht für biblatex + babel
 
 % ============================================================
-%  MATHEMATIK
+%  MATHEMATIK & EINHEITEN
 % ============================================================
 \usepackage{amsmath}            % Erweiterte Mathe-Umgebungen: align, cases, matrix etc.
+\usepackage{mathtools}          % Nützliche Erweiterungen für amsmath (z.B. \coloneqq)
 \usepackage{amsfonts}           % Mathematische Schriftarten: \mathbb{R}, \mathbb{N} etc.
 \usepackage{amssymb}            % Zusätzliche Mathe-Symbole: \leq, \geq, \infty etc.
 \usepackage[version=4]{mhchem}  % Chemische Formeln und Reaktionsgleichungen: \ce{H2O}
+\usepackage[
+  locale=DE,                    % Deutsches Dezimalkomma und Einheitenformat
+  mode=match                    % Einheiten übernehmen automatisch die Dokumentenschrift
+]{siunitx}                      % Physikalische Größen & Einheiten: \qty{9,81}{\meter\per\second\squared}
 
 % ============================================================
 %  SCHRIFT & LAYOUT
 % ============================================================
 \usepackage{newtxtext}          % Times New Roman-basierte Schrift (Fließtext) – klassisch für Abschlussarbeiten
 \usepackage{newtxmath}          % Passende Mathe-Schrift zu newtxtext
+\usepackage{microtype}          % Verbesserter Randausgleich & Mikrotypografie (weniger Overfull-Warnings)
 \usepackage{geometry}           % Seitenränder und Seitenlayout konfigurieren
 \usepackage{setspace}           % Zeilenabstand: \onehalfspacing, \doublespacing etc.
 \usepackage[bottom]{footmisc}   % Fußnoten immer am Seitenende platzieren (nicht am Textende)
 
 % ============================================================
-%  GRAFIKEN & FARBE
+%  GRAFIKEN, TIKZ & FARBE
 % ============================================================
 \usepackage{graphicx}           % Bilder einfügen: \includegraphics[width=...]{pfad}
 \usepackage{xcolor}             % Farben definieren und verwenden: \color{}, \textcolor{}
+\usepackage{tikz}               % Vektorgrafiken & Diagramme direkt in LaTeX zeichnen
+\usetikzlibrary{                % Nützliche TikZ-Erweiterungen für Fluss- & Blockdiagramme
+  arrows.meta,                  % Moderne Pfeilspitzen (z.B. -{Stealth})
+  positioning,                  % Relative Platzierung (below=of ..., right=of ...)
+  shapes.geometric,             % Geometrische Formen (Raute, Ellipse etc.)
+  calc                          % Koordinatenberechnungen
+}
 \usepackage{float}              % Gleitumgebungen kontrollieren: [H] = genau hier platzieren
+\usepackage{subcaption}         % Mehrere Teilabbildungen nebeneinander: \begin{subfigure}
 \usepackage{rotating}           % Tabellen oder Abbildungen um 90 Grad drehen: \begin{sideways}
 
 % ============================================================
@@ -60,7 +74,8 @@
 ]{biblatex}
 \addbibresource{Literaturverzeichnis.bib}  % Pfad zur BibTeX-Datei mit allen Quellen
 
-\usepackage{hyperref}           % Klickbare Links und PDF-Lesezeichen; immer als letztes Paket laden
+\usepackage[hidelinks]{hyperref} % Klickbare Links und PDF-Lesezeichen ohne rote Rahmen; fast immer als letztes Paket laden
+\usepackage[ngerman,nameinlink]{cleveref} % Smarte Querverweise: \cref{fig:a,fig:b} -> "Abbildungen 1.1 und 1.2" (nach hyperref laden!)
 \usepackage{url}                % Saubere URL-Formatierung: \url{https://...}
 
 % ============================================================
@@ -69,6 +84,20 @@
 \usepackage{pdfpages}           % Externe PDFs einbinden: \includepdf[pages=-]{datei.pdf}
 \KOMAoptions{listof=totoc}      % Abbildungs- und Tabellenverzeichnis ins Inhaltsverzeichnis aufnehmen
 \usepackage{acronym}            % Abkürzungsverzeichnis
+
+% Kompatibilitäts-Patch für acronym + cleveref (verhindert Label-Konflikte in .aux)
+\makeatletter
+\AtBeginDocument{%
+  \renewcommand*\AC@verridelabel[1]{%
+    \@bsphack
+    \protected@write\@auxout{}{\string\AC@undonewlabel{#1}}%
+    \protected@write\@auxout{}{\string\AC@undonewlabel{#1@cref}}%
+    \label{#1}%
+    \AC@overriddenmessage rs{#1}%
+    \@esphack
+  }%
+}
+\makeatother
 % ============================================================
 %  SEITENRAENDER
 %  HSWT-Anforderung: links 3 cm (Heftrand), rechts/oben/unten 2,5 cm
@@ -88,6 +117,19 @@
 \setkomafont{chapter}{\normalfont\bfseries\Huge}
 \setkomafont{section}{\normalfont\bfseries\Large}
 \setkomafont{subsection}{\normalfont\bfseries\normalsize}
+
+% ============================================================
+%  HSWT-FARBEN (für Deckblatt und TikZ-Grafiken)
+% ============================================================
+\definecolor{hswtgreen}{RGB}{121, 185, 40}            % Offizielles HSWT-Grün
+\definecolor{hswtdark}{RGB}{48, 72, 34}               % Gedecktes Dunkelgrün für Akzente/Text
+\definecolor{hswtlight}{RGB}{241, 247, 232}           % Helles Grün für TikZ-Boxen/Hintergründe
+
+% ============================================================
+%  EIGENE MAKROS (Kürzel für wiederkehrende Befehle/Symbole)
+% ============================================================
+% Beispiel: \newcommand{\R}{\mathbb{R}}
+% Aufruf im Text/Mathemodus einfach als $\R$ statt $\mathbb{R}$.
 
 % ============================================================
 %  FARBEN FUER CODE-LISTINGS
@@ -112,6 +154,14 @@
   commentstyle=\color{commentcolor}\itshape,
   numbers=left,                   % Zeilennummern am linken Rand
   numberstyle=\tiny\color{gray},
+  columns=flexible,               % Bessere Lesbarkeit und Kopierbarkeit aus dem PDF
+  literate={ö}{{\"o}}1            % Deutsche Umlaute in Code-Bloecken erlauben
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+           {Ö}{{\"O}}1
+           {Ä}{{\"A}}1
+           {Ü}{{\"U}}1
+           {ß}{{\ss}}1,
 }
 
 % ============================================================
@@ -128,19 +178,19 @@
 %  Zum Deaktivieren einfach die Zeile auskommentieren.
 % ============================================================
 %\includeonly{01_Einleitung}
-% ============================================================
-%  DECKBLATT – muss vor \begin{document} eingebunden werden
-% ============================================================
-\include{0_Deckblatt}
 
 % ============================================================
 %  DOKUMENTBEGINN
 % ============================================================
 \begin{document}
 
+% --- Deckblatt (eigene Titelseite ohne Seitenzahl / ohne Hyperref-Kollision) ---
+\hypersetup{pageanchor=false}
+\input{0_Deckblatt}
+\hypersetup{pageanchor=true}
+
 % --- Vorspann: roemische Seitenzahlen (I, II, III, ...) ---
 \pagenumbering{Roman}
-\maketitle
 
 \include{Zusammenfassung}
 % \include{Abstract}   % Englische Kurzfassung – bei Bedarf einkommentieren
