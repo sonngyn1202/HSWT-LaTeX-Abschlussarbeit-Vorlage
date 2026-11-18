@@ -26,23 +26,30 @@ Die Vorlage orientiert sich an den Formalien der **HSWT (Stand 2026)**.
 - [MacTeX](https://www.tug.org/mactex/) – alles inklusive, Perl ist auf macOS vorinstalliert
 - [VS Code](https://code.visualstudio.com/) + Extension **LaTeX Workshop**
 
+### Browser-Alternative: Overleaf
+- [Overleaf](https://www.overleaf.com/) – Projekt als ZIP hochladen und direkt im Browser schreiben (ohne lokale Installation). Hinweis: Im kostenlosen Tarif gelten Limitationen wie ein 10-Sekunden-Kompilierlimit und eingeschränkte Versionierung/Integrationen (Details in der Anleitung).
+
 > Weitere Installationshinweise: [latex-project.org/get](https://www.latex-project.org/get/)
 
 ---
 
 ## Was wird in der Anleitung erklärt?
 
+- Schnellstart & Kompilierungsablauf
+- Voraussetzungen (lokal & Overleaf inkl. Limitationen)
 - Projektstruktur & Ordneraufbau
 - Präambel & Pakete
+- Grundlagen: Gliederung, Textformatierung & Querverweise (`cleveref`)
 - Deckblatt
-- Grafiken einfügen
+- Abbildungen einfügen (Qualität, Positionierung & `subcaption`)
+- Grafiken mit KI und TikZ erstellen (inkl. `standalone`-Export)
 - Tabellen erstellen
-- Zitieren & Literaturverzeichnis
+- Zitieren, Zotero & Literaturverzeichnis
 - Abkürzungsverzeichnis
 - Weitere Verzeichnisse (Abbildungs-, Tabellenverzeichnis)
 - Formalien (Eigenständigkeitserklärung etc.)
-- Formeln
-- Tipps & häufige Probleme
+- Formeln (inkl. LaTeX Workshop Sidebar), Einheiten (`siunitx`), Makros & Quellcode
+- Tipps & häufige Probleme (inkl. Git-Schreibtipps)
 
 ---
 
