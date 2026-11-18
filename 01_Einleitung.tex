@@ -136,6 +136,7 @@ Empfohlene Präfixe für klare Ordnung sind \texttt{chap:} (Kapitel), \texttt{se
 
 Bilder werden in den Ordner \texttt{Bilder/} gelegt (bevorzugt als Vektor-\texttt{.pdf} oder hochauflösendes \texttt{.png}) und mit der \texttt{figure}-Umgebung eingebunden:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{figure}[htbp]
     \centering
@@ -144,6 +145,7 @@ Bilder werden in den Ordner \texttt{Bilder/} gelegt (bevorzugt als Vektor-\textt
     \label{fig:meinbild}
 \end{figure}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Abbildung~\ref{fig:HSWTLogo} zeigt eine eingebundene Grafik als Beispiel:
 
@@ -171,6 +173,7 @@ Abbildung~\ref{fig:HSWTLogo} zeigt eine eingebundene Grafik als Beispiel:
 \subsection{Mehrere Teilabbildungen nebeneinander (subcaption)}
 Sollen zwei oder mehr Grafiken gemeinsam als \textit{(a)} und \textit{(b)} unter einer Hauptunterschrift erscheinen, hilft das bereits geladene Paket \texttt{subcaption}:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{figure}[htbp]
     \centering
@@ -191,32 +194,7 @@ Sollen zwei oder mehr Grafiken gemeinsam als \textit{(a)} und \textit{(b)} unter
     \label{fig:gesamt}
 \end{figure}
 \end{lstlisting}
-
-Auf eine Teilabbildung verweist man per \texttt{\textbackslash ref\{fig:teil\_a\}} oder direkt per \texttt{\textbackslash cref\{fig:teil\_a\}}.
-
-\subsection{Mehrere Teilabbildungen nebeneinander (subcaption)}
-Sollen zwei oder mehr Grafiken gemeinsam als \textit{(a)} und \textit{(b)} unter einer Hauptunterschrift erscheinen, hilft das bereits geladene Paket \texttt{subcaption}:
-
-\begin{lstlisting}[language=tex]
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Bilder/grafik_a.png}
-        \caption{Erste Teilabbildung}
-        \label{fig:teil_a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Bilder/grafik_b.png}
-        \caption{Zweite Teilabbildung}
-        \label{fig:teil_b}
-    \end{subfigure}
-    \caption{Gesamtbeschreibung beider Grafiken}
-    \label{fig:gesamt}
-\end{figure}
-\end{lstlisting}
+\end{minipage}\par\medskip
 
 Einzelne Teilabbildungen lassen sich anschließend direkt per \texttt{\textbackslash ref\{fig:teil\_a\}} oder \texttt{\textbackslash cref\{fig:teil\_a\}} referenzieren.
 
@@ -292,6 +270,7 @@ Der bewährte Ablauf umfasst vier Schritte (siehe Abbildung~\ref{fig:tikz_workfl
 \subsection{Prompt-Vorlage für TikZ-Grafiken}
 Mit folgender Vorlage liefert eine KI in der Regel sofort kompilierbaren Code, der direkt zu dieser Vorlage passt:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 Erstelle mir eine wissenschaftliche Grafik mit LaTeX (TikZ).
 Rahmenbedingungen meiner Vorlage (scrreprt, pdflatex):
@@ -305,10 +284,12 @@ Inhalt der Grafik:
 
 Gib mir den vollständigen Code innerhalb einer figure-Umgebung mit \caption und \label.
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 \subsection{Kurzes Code-Beispiel zum Verstehen}
 Auch ohne KI hilft ein Blick auf den Grundaufbau eines \texttt{tikzpicture}-Blocks, um kleine Anpassungen (wie Farben oder Abstände) später selbst vorzunehmen:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{figure}[htbp]
   \centering
@@ -324,14 +305,17 @@ Auch ohne KI hilft ein Blick auf den Grundaufbau eines \texttt{tikzpicture}-Bloc
     % Pfeil zwischen den Knoten zeichnen
     \draw[-{Stealth}] (a) -- node[above, font=\small] {Prozess} (b);
   \end{tikzpicture}
-    \caption{Minimales TikZ-Beispiel mit zwei Knoten und einem Pfeil}
+  \caption{Minimales TikZ-Beispiel mit zwei Knoten und einem Pfeil}
   \label{fig:tikz_minimal}
 \end{figure}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 \subsection{Performance-Tipp für komplexe TikZ-Grafiken (standalone)}
 Werden in einer Arbeit sehr viele oder rechenintensive TikZ-Diagramme verwendet, kann das Kompilieren spürbar langsamer werden (was im kostenlosen Overleaf-Tarif schnell zum 10-Sekunden-Timeout führt).
 Abhilfe schafft das Vorkompilieren als eigene PDF-Datei:
+
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 % Separate Datei z.B. Bilder/komplexes_diagramm.tex
 \documentclass[tikz, border=2pt]{standalone}
@@ -342,6 +326,7 @@ Abhilfe schafft das Vorkompilieren als eigene PDF-Datei:
 \end{tikzpicture}
 \end{document}
 \end{lstlisting}
+\end{minipage}\par\medskip
 Das einmalig erzeugte PDF bindet man anschließend extrem schnell per \texttt{\textbackslash includegraphics} in \texttt{main.tex} ein.
 
 % ============================================================
@@ -351,6 +336,7 @@ Das einmalig erzeugte PDF bindet man anschließend extrem schnell per \texttt{\t
 
 Für wissenschaftliche Tabellen empfiehlt sich die Kombination aus \texttt{tabularx} (automatisch angepasste Spaltenbreiten) und \texttt{booktabs} (saubere horizontale Linien ohne vertikale Trennstriche):
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{table}[htbp]
     \centering
@@ -366,6 +352,7 @@ Für wissenschaftliche Tabellen empfiehlt sich die Kombination aus \texttt{tabul
     \end{tabularx}
 \end{table}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 \textbf{Spaltentypen in \texttt{tabularx}:}
 \begin{itemize}
@@ -400,6 +387,7 @@ Tabelle~\ref{tab:beispiel_vierspaltig} zeigt das gerenderte Ergebnis einer 4-spa
 Alle verwendeten Quellen werden in der Datei \texttt{Literaturverzeichnis.bib} im BibTeX-Format gesammelt.
 Ein typischer Eintrag sieht folgendermaßen aus:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 @article{mustermann2024,
   author  = {Mustermann, Max},
@@ -410,6 +398,7 @@ Ein typischer Eintrag sieht folgendermaßen aus:
   pages   = {34--56},
 }
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Im Text zitiert man mit \texttt{\textbackslash cite\{Muster2025\}}, was im voreingestellten IEEE-Stil automatisch eine Nummer wie \cite{Muster2025} erzeugt.
 Für konkrete Seitenzahlen nutzt man ein optionales Argument: \texttt{\textbackslash cite[S.\textasciitilde 42]\{Muster2025\}}.
@@ -438,12 +427,14 @@ Für das Abkürzungsverzeichnis stehen zwei Möglichkeiten zur Verfügung:
 \textbf{Variante 2 – Automatisiert mit dem \texttt{acronym}-Paket (empfohlen):}
 Abkürzungen einmalig in \texttt{Abkürzungsverzeichnis.tex} definieren:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{acronym}
     \acro{KI}{Künstliche Intelligenz}
     \acro{HSWT}{Hochschule Weihenstephan-Triesdorf}
 \end{acronym}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Im Fließtext verwendet man anschließend \texttt{\textbackslash ac\{KI\}}.
 Beim \textbf{ersten Auftreten} schreibt LaTeX automatisch \enquote{Künstliche Intelligenz (KI)}, bei jeder weiteren Nennung nur noch \enquote{KI}.
@@ -461,12 +452,14 @@ Auch an der \ac{HSWT} wird das Thema intensiv behandelt (danach kurz: \ac{HSWT})
 Kurze Formeln im Fließtext stehen zwischen Dollarzeichen \texttt{\$...\$}, z.\,B. ergibt \texttt{\$E = mc\^{}2\$} die Darstellung $E = mc^2$.
 Abgesetzte, automatisch nummerierte Formeln schreibt man in der \texttt{equation}-Umgebung:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \begin{equation}
     \label{eq:energie}
     E = mc^2
 \end{equation}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Das Ergebnis im Dokument:
 \begin{equation}
@@ -503,6 +496,7 @@ Soll sich später die Darstellung ändern, genügt eine Anpassung an einer einzi
 Kurze Befehle oder Variablennamen im Fließtext setzt man mit \texttt{\textbackslash texttt\{code\}}.
 Für längere Code-Blöcke nutzt man die \texttt{lstlisting}-Umgebung (siehe auch Anhang~\ref{anh:beispiel}):
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex, escapeinside={(*@}{@*)}]
 \begin{lstlisting}[language=Python]
 def hello(name: str) -> str:
@@ -511,9 +505,11 @@ def hello(name: str) -> str:
 print(hello("Welt"))
 (*@\textbackslash end\{lstlisting\}@*)
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Über \texttt{language=} lässt sich die Programmiersprache festlegen (z.\,B. \texttt{Python}, \texttt{C}, \texttt{Java}, \texttt{bash}, \texttt{SQL}).
 Das einheitliche Erscheinungsbild (Farben, Rahmen, Zeilennummern, Zeilenumbruch) wird zentral in \texttt{main.tex} über \texttt{\textbackslash lstset\{\}} gesteuert.
+Um kurze eigene Code-Blöcke vor einem Seitenumbruch zu schützen, kann man am Block entweder \texttt{float=htbp} ergänzen (wie bei Abbildungen) oder den Block in eine \texttt{minipage} setzen; längere Skripte (z.\,B. im Anhang) bleiben dadurch weiterhin umbrechbar.
 
 % ============================================================
 \section{Deckblatt anpassen}
@@ -534,6 +530,7 @@ Falls zusätzlich ein englischer \textit{Abstract} verlangt wird, kann eine Date
 Bei umfangreichen Arbeiten lässt sich die Kompilierzeit mit \texttt{\textbackslash includeonly} deutlich verkürzen.
 Der Befehl gehört in die \textbf{Präambel} von \texttt{main.tex} (vor \texttt{\textbackslash begin\{document\}}):
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 % Nur die Einleitung kompilieren:
 \includeonly{01_Einleitung}
@@ -541,6 +538,7 @@ Der Befehl gehört in die \textbf{Präambel} von \texttt{main.tex} (vor \texttt{
 % Mehrere Kapitel kompilieren:
 \includeonly{01_Einleitung,02_Kapitel}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Dabei werden nur die genannten Kapitel neu übersetzt – Seitenzahlen, Inhaltsverzeichnis und Querverweise zu anderen Kapiteln bleiben trotzdem korrekt erhalten.
 Vor der finalen Abgabe sollte \texttt{\textbackslash includeonly} wieder auskommentiert werden, damit wieder das vollständige PDF entsteht.
@@ -552,10 +550,12 @@ Vor der finalen Abgabe sollte \texttt{\textbackslash includeonly} wieder auskomm
 
 Die unterschriebene Eigenständigkeitserklärung (und ggf. die Zugänglichkeitserklärung) wird als PDF im Projektordner abgelegt und am Ende von \texttt{main.tex} eingebunden:
 
+\par\medskip\noindent\begin{minipage}{\textwidth}\vspace{3pt}
 \begin{lstlisting}[language=tex]
 \cleardoublepage
 \includepdf[pages=-]{Eigenstaendigkeitserklaerung.pdf}
 \end{lstlisting}
+\end{minipage}\par\medskip
 
 Der Parameter \texttt{pages=-} sorgt dafür, dass alle Seiten des PDFs vollständig übernommen werden.
 
@@ -587,4 +587,6 @@ Die bereits enthaltene \texttt{.gitignore}-Datei sorgt zudem dafür, dass tempor
 
 \subsection{KI-Unterstützung für LaTeX}
 Sprachmodelle (ChatGPT, Gemini, Claude) sind nicht nur für TikZ-Grafiken (Abschnitt~\ref{sec:tikz_ki}), sondern auch bei komplexen Tabellen, Formeln oder der Diagnose von Fehlermeldungen sehr hilfreich.
-\textbf{Tipp:} Im Prompt stets die Dokumentklasse (\texttt{scrreprt}) und die bereits geladenen Pakete (z.\,B. \texttt{tabularx}, \texttt{booktabs}, \texttt{biblatex}) nennen – so erhält man direkt kompatiblen Code für diese Vorlage.
+Darüber hinaus können \textbf{Coding-Agenten} direkt im Editor oder Projektordner – etwa \textit{Claude Code}, \textit{Antigravity}, \textit{GitHub Copilot} oder der Coding-Agent von ChatGPT (\textit{Codex}) – eine große Hilfe sein: Sie lesen die vorhandene Projektstruktur samt \texttt{main.tex} mit, passen Änderungen direkt an die geladenen Pakete an und können Kompilierungsfehler unmittelbar beheben.
+
+\textbf{Tipp:} Bei reinen Chat-Prompts stets die Dokumentklasse (\texttt{scrreprt}) und die bereits geladenen Pakete (z.\,B. \texttt{tabularx}, \texttt{booktabs}, \texttt{biblatex}) nennen – so erhält man direkt kompatiblen Code für diese Vorlage.
